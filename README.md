@@ -52,3 +52,44 @@ Directly from GCC 16!
 Directly from GCC 16!
 Directly from GCC 16!
 ```
+
+---
+
+## Acquire gcc v16.1 on linux machine
+```bash
+sudo apt update
+sudo apt install build-essential libmpfr-dev libgmp3-dev libmpc-dev flex bison -y
+
+cd ~
+wget https://ftp.gnu.org/gnu/gcc/gcc-16.1.0/gcc-16.1.0.tar.gz
+tar -xf gcc-16.1.0.tar.gz
+cd gcc-16.1.0
+
+# Download support libraries
+./contrib/download_prerequisites
+
+# Create a separate build directory (GCC docs recommend this)
+mkdir build && cd build
+
+# Configure the build
+# --disable-multilib: Speeds things up by only building for 64-bit
+# --enable-languages: We only need C and C++
+../configure -v \
+    --build=x86_64-linux-gnu \
+    --host=x86_64-linux-gnu \
+    --target=x86_64-linux-gnu \
+    --prefix=$HOME/gcc-16.1.0 \
+    --enable-checking=release \
+    --enable-languages=c,c++ \
+    --disable-multilib
+
+make -j6
+
+sudo make install
+
+# Verify the version
+~/gcc-16.1.0/bin/g++ --version
+
+# Compile your project
+~/gcc-16.1.0/bin/g++ -std=c++26 -freflection reflection.cpp -o reflection
+```
