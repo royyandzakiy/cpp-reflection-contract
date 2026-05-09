@@ -1,5 +1,7 @@
 # C++26: Reflection, Contract
 
+Implementing latest functions of C++26. Tested on WSL2 Ubuntu 24.04.
+
 ## Contract
 ```cpp
 // g++ -std=c++26 contract.cpp -o contract
