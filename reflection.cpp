@@ -1,7 +1,7 @@
 #include <meta>
-#include <iostream>
 #include <sstream>
 #include <string>
+#include <print>
 
 template <typename T>
 std::string to_string(const T &obj)
@@ -36,7 +36,7 @@ struct Person
 
 int main()
 {
-	std::cout << to_string(Point{3, 7}) << "\n";
-	std::cout << to_string(Person{"Alice", 30}) << "\n";
-	std::cout << to_string(Person{"Bob", 32}) << "\n";
+	std::println("{}", to_string(Point{3, 7}));
+	std::println("{}", to_string(Person{"Alice", 30}));
+	std::println("{}", to_string(Person{"Bob", 32}));
 }
